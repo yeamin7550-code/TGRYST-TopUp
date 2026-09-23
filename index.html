@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TGRYST TOP UP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #0d1117;
+            color: #fff;
+            padding-bottom: 70px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+        }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #58a6ff;
+        }
+        .auth-btns .btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-login { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+        .btn-register { background: #238636; color: #fff; margin-left: 5px; }
+
+        .notice-bar {
+            background: #1f6beb;
+            color: #fff;
+            padding: 10px 15px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner {
+            width: 100%;
+            padding: 15px;
+        }
+        .banner-box {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #1f6beb, #0d1117);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .banner-box h2 {
+            color: #00f2fe;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            padding: 0 15px 15px 15px;
+        }
+        .social-btn {
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .telegram { background: #0088cc; }
+        .group { background: #16a34a; }
+        .whatsapp { background: #25d366; }
+
+        .container {
+            padding: 15px;
+        }
+        .section-title {
+            font-size: 16px;
+            color: #58a6ff;
+            margin-bottom: 10px;
+            border-left: 4px solid #58a6ff;
+            padding-left: 8px;
+        }
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background: #161b22;
+            color: #fff;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        .card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .card.active, .card:hover {
+            border-color: #58a6ff;
+            background: #21262d;
+        }
+        .card h4 { color: #fff; font-size: 15px; }
+        .card p { color: #238636; font-weight: bold; margin-top: 5px; font-size: 14px; }
+
+        .btn-order {
+            width: 100%;
+            padding: 14px;
+            background: #238636;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #161b22;
+            border-top: 1px solid #30363d;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .nav-item {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 11px;
+            text-align: center;
+        }
+        .nav-item.active { color: #58a6ff; }
+        .nav-item i { font-size: 18px; display: block; margin-bottom: 3px; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="logo">TGRYST TOPUP</div>
+        <div class="auth-btns">
+            <button class="btn btn-login">LOGIN</button>
+            <button class="btn btn-register">REGISTER</button>
+        </div>
+    </div>
+
+    <div class="notice-bar">
+        <i class="fas fa-bell"></i>
+        <span>আমাদের সার্ভিস ২৪ ঘণ্টা খোলা থাকে। যেকোনো সমস্যায় হোয়াটসঅ্যাপে মেসেজ দিন।</span>
+    </div>
+
+    <div class="banner">
+        <div class="banner-box">
+            <h2>TGRYST TOP UP<br><span style="font-size: 14px; color: #fff;">Fast & Trusted Diamond Store</span></h2>
+        </div>
+    </div>
+
+    <div class="social-grid">
+        <a href="#" class="social-btn telegram"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="#" class="social-btn group"><i class="fas fa-users"></i> Join Group</a>
+        <a href="https://wa.me/8801700000000" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    </div>
+
+    <div class="container">
+        <form id="orderForm">
+            <div class="section-title">১. প্লেয়ার আইডি দিন</div>
+            <input type="number" id="uid" class="input-box" placeholder="Player UID (যেমন: 12345678)" required>
+
+            <div class="section-title">২. অফার সিলেক্ট করুন</div>
+            <div class="offers-grid">
+                <div class="card" onclick="selectCard('25 Diamond', 25)">
+                    <h4>25 Diamond</h4>
+                    <p>25 Tk</p>
+                </div>
+                <div class="card" onclick="selectCard('50 Diamond', 45)">
+                    <h4>50 Diamond</h4>
+                    <p>45 Tk</p>
+                </div>
+                <div class="card" onclick="selectCard('115 Diamond', 80)">
+                    <h4>115 Diamond</h4>
+                    <p>80 Tk</p>
+                </div>
+                <div class="card" onclick="selectCard('Weekly Lite', 50)">
+                    <h4>Weekly Lite</h4>
+                    <p>50 Tk</p>
+                </div>
+            </div>
+
+            <div class="section-title">৩. পেমেন্ট ট্রানজেকশন নম্বর</div>
+            <p style="font-size: 12px; color: #8b949e; margin-bottom: 5px;">bKash/Nagad Personal: 01700000000</p>
+            <input type="text" id="trxid" class="input-box" placeholder="TrxID (যেমন: 9J7A6X...)" required>
+
+            <button type="submit" class="btn-order">অর্ডার কনফার্ম করুন</button>
+        </form>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active"><i class="fas fa-home"></i>HOME</a>
+        <a href="#" class="nav-item"><i class="fas fa-box"></i>ORDERS</a>
+        <a href="#" class="nav-item"><i class="fas fa-user"></i>ACCOUNT</a>
+    </div>
+
+    <script>
+        let selectedItem = '';
+        let selectedPrice = 0;
+
+        function selectCard(item, price) {
+            selectedItem = item;
+            selectedPrice = price;
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!selectedItem) {
+                alert('দয়া করে একটি প্যাকেজ সিলেক্ট করুন!');
+                return;
+            }
+            const uid = document.getElementById('uid').value;
+            const trxid = document.getElementById('trxid').value;
+            const adminPhone = "8801700000000";
+
+            const message = `*NEW ORDER - TGRYST TOP UP*%0A%0A` +
+                            `*UID:* ${uid}%0A` +
+                            `*Item:* ${selectedItem}%0A` +
+                            `*Price:* ${selectedPrice} Tk%0A` +
+                            `*TrxID:* ${trxid}`;
+
+            window.open(`https://wa.me/${adminPhone}?text=${message}`, '_blank');
+        });
+    </script>
+</body>
+              </html>
