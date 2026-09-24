@@ -3,162 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TGRYST TOP UP</title>
+    <title>TGRYST TOPUP</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; padding-bottom: 80px; }
+        body { background-color: #f7f9fc; color: #333; padding-bottom: 80px; }
 
         /* Top Navbar */
-        .navbar { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e1e4e8; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .logo { font-size: 20px; font-weight: 800; color: #0088cc; letter-spacing: -0.5px; }
+        .navbar { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.03); }
+        .logo { font-size: 18px; font-weight: 800; color: #8e24aa; }
         .logo span { color: #111; }
-        .user-badge { display: flex; align-items: center; gap: 8px; background: #eef2f5; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 13px; }
-        .user-avatar { width: 26px; height: 26px; background: #0088cc; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
-
+        .user-badge { display: flex; align-items: center; gap: 8px; background: #ee2c4a; color: #fff; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 13px; }
+        
         .container { padding: 15px; max-width: 600px; margin: 0 auto; }
 
-        /* Category Header */
-        .cat-header { font-size: 18px; font-weight: 800; text-align: center; color: #111; margin: 15px 0; text-transform: uppercase; }
+        /* Banner Header */
+        .banner-box { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        .banner-box img { width: 100%; height: auto; display: block; }
 
-        /* Item Grid */
-        .item-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .item-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e1e4e8; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .item-card.active { border-color: #1a73e8; box-shadow: 0 0 0 2px #1a73e8; }
-        .item-img { width: 100%; height: 95px; background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 5px; position: relative; }
-        .item-img i { font-size: 28px; margin-bottom: 4px; color: #ffb703; }
-        .item-img .title-badge { font-size: 11px; font-weight: 700; text-shadow: 0 1px 2px #000; text-transform: uppercase; }
-        .item-name { font-size: 12px; font-weight: 800; color: #2e7d32; padding: 8px 4px; background: #fff; }
+        /* Main Section Header */
+        .section-title { font-size: 16px; font-weight: 700; color: #222; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .section-title span.num { background: #ee2c4a; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; }
 
-        /* Special Banner Mystery Box */
-        .mystery-bg { background: linear-gradient(135deg, #ff9900, #ff5500) !important; }
-        .mystery-bg i { color: #fff !important; }
+        /* Product Grid (UIDTOPUP Style) */
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 20px; }
+        .product-card { background: #fff; border-radius: 10px; border: 1.5px solid #e2e8f0; padding: 12px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s ease; }
+        .product-card:hover, .product-card.active { border-color: #ee2c4a; background: #fff0f2; box-shadow: 0 2px 8px rgba(238, 44, 74, 0.15); }
+        
+        .product-info { display: flex; flex-direction: column; gap: 4px; }
+        .product-name { font-size: 14px; font-weight: 700; color: #2d3748; }
+        .product-price { font-size: 13px; font-weight: 800; color: #ee2c4a; }
+        
+        .check-icon { font-size: 16px; color: #cbd5e0; }
+        .product-card.active .check-icon { color: #ee2c4a; }
 
-        /* Section Box */
-        .step-box { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid #e1e4e8; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .step-num { width: 28px; height: 28px; background: #1a73e8; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .step-title { font-size: 16px; font-weight: 700; color: #2c3e50; }
+        /* Step Box */
+        .step-box { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; margin-bottom: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
 
-        /* Input Control */
-        .input-control { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #dcdfe6; font-size: 14px; outline: none; background: #fdfdfd; }
-        .input-control:focus { border-color: #1a73e8; background: #fff; }
+        /* RGB Border Glow for UID Box */
+        @keyframes rgbGlow {
+            0% { border-color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.6); }
+            33% { border-color: #00e5ff; box-shadow: 0 0 10px rgba(0, 229, 255, 0.6); }
+            66% { border-color: #76ff03; box-shadow: 0 0 10px rgba(118, 255, 3, 0.6); }
+            100% { border-color: #ff0055; box-shadow: 0 0 10px rgba(255, 0, 85, 0.6); }
+        }
 
-        /* Payment Selection Cards */
-        .pay-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-        .pay-card { border: 1px solid #e1e4e8; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; background: #fff; }
-        .pay-card.active { border-color: #1a73e8; background: #f4f8ff; box-shadow: 0 0 0 1px #1a73e8; }
-        .pay-title { font-weight: 700; font-size: 14px; color: #1a73e8; margin-bottom: 4px; }
+        .rgb-input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 2px solid #ff0055;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            background: #fff;
+            animation: rgbGlow 3s infinite linear;
+        }
 
-        /* Order Button */
-        .btn-buy { width: 100%; padding: 14px; background: #28a745; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); }
+        /* Verify Player Name Display */
+        .player-status { margin-top: 10px; font-size: 13px; font-weight: 700; color: #2e7d32; display: none; background: #e8f5e9; padding: 10px; border-radius: 8px; border: 1px solid #c8e6c9; }
 
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid #e1e4e8; display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; }
-        .nav-item { color: #6c757d; text-decoration: none; font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .nav-item.active { color: #1a73e8; }
+        /* Payment Option */
+        .pay-option { border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px; background: #fff; text-align: center; font-weight: 700; color: #1a202c; }
+        .pay-option.active { border-color: #28a745; background: #f0fff4; }
+
+        /* Submit Button */
+        .btn-submit { width: 100%; padding: 15px; background: #ee2c4a; color: #fff; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(238, 44, 74, 0.3); transition: 0.2s; margin-top: 10px; }
+        .btn-submit:hover { background: #d6233e; }
+
+        /* Bottom Nav Bar */
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid #eaeaea; display: flex; justify-content: space-around; padding: 10px 0; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.04); }
+        .nav-item { color: #718096; text-decoration: none; font-size: 11px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .nav-item.active { color: #ee2c4a; }
         .nav-item i { font-size: 18px; }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Header Navbar -->
     <div class="navbar">
         <div class="logo">TGRYST <span>TOPUP</span></div>
         <div class="user-badge">
-            <div class="user-avatar">Y</div>
-            <span>৳ 0.00</span>
+            <i class="fas fa-wallet"></i> ৳ 0
         </div>
     </div>
 
     <div class="container">
-        
-        <!-- Category Title -->
-        <div class="cat-header">FREE FIRE TOPUP ⚡</div>
 
-        <!-- Offer Items (3 Column Grid) -->
-        <div class="item-grid">
-            <div class="item-card" onclick="selectOffer('25 Diamond', 25)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">25 Diamond</div>
-                </div>
-                <div class="item-name">25 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('50 Diamond', 45)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">50 Diamond</div>
-                </div>
-                <div class="item-name">45 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('115 Diamond', 80)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">115 Diamond</div>
-                </div>
-                <div class="item-name">80 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Weekly Lite', 50)">
-                <div class="item-img">
-                    <i class="fas fa-crown"></i>
-                    <div class="title-badge">Weekly Lite</div>
-                </div>
-                <div class="item-name">50 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Mystery Box', 30)">
-                <div class="item-img mystery-bg">
-                    <i class="fas fa-box-open"></i>
-                    <div class="title-badge">Mystery Box</div>
-                </div>
-                <div class="item-name">30 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Level Up Pass', 190)">
-                <div class="item-img">
-                    <i class="fas fa-layer-group"></i>
-                    <div class="title-badge">Level Up Pass</div>
-                </div>
-                <div class="item-name">190 Tk</div>
-            </div>
+        <!-- Top Banner with Uploaded Image -->
+        <div class="banner-box">
+            <img src="https://postimg.cc/7238507138237547526" alt="Free Fire Banner" onerror="this.src='https://i.postimg.cc/RF5q741f/7238507138237547526-avatar-png.png';">
         </div>
 
         <form id="topupForm">
-            <!-- Step 1: Account Info -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">1</div>
-                    <div class="step-title">Account Info</div>
-                </div>
-                <input type="number" id="playerUid" class="input-control" placeholder="Enter player id (UID)" required>
+            
+            <!-- Step 1: Select Recharge Package -->
+            <div class="section-title">
+                <span class="num">1</span> Select Recharge
             </div>
 
-            <!-- Step 2: Payment Selection -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">2</div>
-                    <div class="step-title">Select Payment</div>
-                </div>
-                <div class="pay-grid">
-                    <div class="pay-card active">
-                        <div class="pay-title">bKash / Nagad Personal</div>
-                        <p style="font-size: 13px; color: #333; font-weight: bold; margin-top: 4px;">Send Money Number: 01940836975</p>
+            <div class="product-grid">
+                <div class="product-card" onclick="selectItem(this, '25 Diamond', 20)">
+                    <div class="product-info">
+                        <span class="product-name">25 Diamond</span>
+                        <span class="product-price">20 TK</span>
                     </div>
+                    <i class="far fa-check-circle check-icon"></i>
                 </div>
-                <input type="text" id="trxId" class="input-control" placeholder="Enter Transaction ID (TrxID)" required style="margin-top: 10px;">
+
+                <div class="product-card" onclick="selectItem(this, '50 Diamond', 36)">
+                    <div class="product-info">
+                        <span class="product-name">50 Diamond</span>
+                        <span class="product-price">36 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, '115 Diamond', 78)">
+                    <div class="product-info">
+                        <span class="product-name">115 Diamond</span>
+                        <span class="product-price">78 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, '240 Diamond', 158)">
+                    <div class="product-info">
+                        <span class="product-name">240 Diamond</span>
+                        <span class="product-price">158 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, 'Weekly Lite', 42)">
+                    <div class="product-info">
+                        <span class="product-name">Weekly Lite</span>
+                        <span class="product-price">42 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, 'Weekly Membership', 158)">
+                    <div class="product-info">
+                        <span class="product-name">Weekly</span>
+                        <span class="product-price">158 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, 'Monthly Membership', 790)">
+                    <div class="product-info">
+                        <span class="product-name">Monthly</span>
+                        <span class="product-price">790 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
+
+                <div class="product-card" onclick="selectItem(this, 'Level Up Pass', 190)">
+                    <div class="product-info">
+                        <span class="product-name">Level Up Pass</span>
+                        <span class="product-price">190 TK</span>
+                    </div>
+                    <i class="far fa-check-circle check-icon"></i>
+                </div>
             </div>
 
-            <!-- Buy Button -->
-            <button type="submit" class="btn-buy">অর্ডার কনফার্ম করুন</button>
+            <!-- Step 2: Account Info (RGB Input) -->
+            <div class="section-title">
+                <span class="num">2</span> Account Info
+            </div>
+
+            <div class="step-box">
+                <input type="number" id="playerUid" class="rgb-input" placeholder="Enter Player UID (e.g. 123456789)" oninput="checkUid()" required>
+                <div id="playerStatus" class="player-status">
+                    <i class="fas fa-check-circle"></i> Player Verified Successfully!
+                </div>
+            </div>
+
+            <!-- Step 3: Payment Method -->
+            <div class="section-title">
+                <span class="num">3</span> Payment
+            </div>
+
+            <div class="step-box">
+                <div class="pay-option active">
+                    bKash / Nagad Personal: 01940836975
+                </div>
+                <input type="text" id="trxId" class="rgb-input" placeholder="Enter Transaction ID (TrxID)" style="margin-top: 12px; animation: none; border-color: #cbd5e0;" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit">অর্ডার কনফার্ম করুন</button>
+
         </form>
 
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Navigation Bar -->
     <div class="bottom-nav">
         <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
         <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Add Money</a>
@@ -170,17 +211,33 @@
         let selectedPackage = '';
         let selectedPrice = 0;
 
-        function selectOffer(name, price) {
+        function selectItem(element, name, price) {
             selectedPackage = name;
             selectedPrice = price;
-            document.querySelectorAll('.item-card').forEach(card => card.classList.remove('active'));
-            event.currentTarget.classList.add('active');
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('active');
+                card.querySelector('.check-icon').className = 'far fa-check-circle check-icon';
+            });
+
+            element.classList.add('active');
+            element.querySelector('.check-icon').className = 'fas fa-check-circle check-icon';
+        }
+
+        function checkUid() {
+            const uidInput = document.getElementById('playerUid').value;
+            const statusBox = document.getElementById('playerStatus');
+            if(uidInput.length >= 8) {
+                statusBox.style.display = 'block';
+            } else {
+                statusBox.style.display = 'none';
+            }
         }
 
         document.getElementById('topupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             if(!selectedPackage) {
-                alert('দয়া করে যেকোনো একটি অফার সিলেক্ট করুন!');
+                alert('দয়া করে একটি প্যাকেজ বা অফার নির্বাচন করুন!');
                 return;
             }
 
@@ -188,412 +245,10 @@
             const trxid = document.getElementById('trxId').value;
             const whatsappNumber = "8801940836975";
 
-            const text = `*NEW ORDER - TGRYST TOPUP*%0A%0A` +
-                         `*Player UID:* ${uid}%0A` +
+            const text = `*NEW TOPUP ORDER*%0A%0A` +
+                         `*UID:* ${uid}%0A` +
                          `*Package:* ${selectedPackage}%0A` +
-                         `*Price:* ${selectedPrice} Tk%0A` +
-                         `*TrxID:* ${trxid}`;
-
-            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-        });
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TGRYST TOP UP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; padding-bottom: 80px; }
-
-        /* Top Navbar */
-        .navbar { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e1e4e8; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .logo { font-size: 20px; font-weight: 800; color: #0088cc; letter-spacing: -0.5px; }
-        .logo span { color: #111; }
-        .user-badge { display: flex; align-items: center; gap: 8px; background: #eef2f5; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 13px; }
-        .user-avatar { width: 26px; height: 26px; background: #0088cc; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
-
-        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
-
-        /* Category Header */
-        .cat-header { font-size: 18px; font-weight: 800; text-align: center; color: #111; margin: 15px 0; text-transform: uppercase; }
-
-        /* Item Grid */
-        .item-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .item-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e1e4e8; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .item-card.active { border-color: #1a73e8; box-shadow: 0 0 0 2px #1a73e8; }
-        .item-img { width: 100%; height: 95px; background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 5px; position: relative; }
-        .item-img i { font-size: 28px; margin-bottom: 4px; color: #ffb703; }
-        .item-img .title-badge { font-size: 11px; font-weight: 700; text-shadow: 0 1px 2px #000; text-transform: uppercase; }
-        .item-name { font-size: 12px; font-weight: 800; color: #2e7d32; padding: 8px 4px; background: #fff; }
-
-        /* Special Banner Mystery Box */
-        .mystery-bg { background: linear-gradient(135deg, #ff9900, #ff5500) !important; }
-        .mystery-bg i { color: #fff !important; }
-
-        /* Section Box */
-        .step-box { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid #e1e4e8; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .step-num { width: 28px; height: 28px; background: #1a73e8; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .step-title { font-size: 16px; font-weight: 700; color: #2c3e50; }
-
-        /* Input Control */
-        .input-control { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #dcdfe6; font-size: 14px; outline: none; background: #fdfdfd; }
-        .input-control:focus { border-color: #1a73e8; background: #fff; }
-
-        /* Payment Selection Cards */
-        .pay-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-        .pay-card { border: 1px solid #e1e4e8; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; background: #fff; }
-        .pay-card.active { border-color: #1a73e8; background: #f4f8ff; box-shadow: 0 0 0 1px #1a73e8; }
-        .pay-title { font-weight: 700; font-size: 14px; color: #1a73e8; margin-bottom: 4px; }
-
-        /* Order Button */
-        .btn-buy { width: 100%; padding: 14px; background: #28a745; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); }
-
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid #e1e4e8; display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; }
-        .nav-item { color: #6c757d; text-decoration: none; font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .nav-item.active { color: #1a73e8; }
-        .nav-item i { font-size: 18px; }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">TGRYST <span>TOPUP</span></div>
-        <div class="user-badge">
-            <div class="user-avatar">Y</div>
-            <span>৳ 0.00</span>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <!-- Category Title -->
-        <div class="cat-header">FREE FIRE TOPUP ⚡</div>
-
-        <!-- Offer Items (3 Column Grid) -->
-        <div class="item-grid">
-            <div class="item-card" onclick="selectOffer('25 Diamond', 25)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">25 Diamond</div>
-                </div>
-                <div class="item-name">25 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('50 Diamond', 45)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">50 Diamond</div>
-                </div>
-                <div class="item-name">45 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('115 Diamond', 80)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">115 Diamond</div>
-                </div>
-                <div class="item-name">80 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Weekly Lite', 50)">
-                <div class="item-img">
-                    <i class="fas fa-crown"></i>
-                    <div class="title-badge">Weekly Lite</div>
-                </div>
-                <div class="item-name">50 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Mystery Box', 30)">
-                <div class="item-img mystery-bg">
-                    <i class="fas fa-box-open"></i>
-                    <div class="title-badge">Mystery Box</div>
-                </div>
-                <div class="item-name">30 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Level Up Pass', 190)">
-                <div class="item-img">
-                    <i class="fas fa-layer-group"></i>
-                    <div class="title-badge">Level Up Pass</div>
-                </div>
-                <div class="item-name">190 Tk</div>
-            </div>
-        </div>
-
-        <form id="topupForm">
-            <!-- Step 1: Account Info -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">1</div>
-                    <div class="step-title">Account Info</div>
-                </div>
-                <input type="number" id="playerUid" class="input-control" placeholder="Enter player id (UID)" required>
-            </div>
-
-            <!-- Step 2: Payment Selection -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">2</div>
-                    <div class="step-title">Select Payment</div>
-                </div>
-                <div class="pay-grid">
-                    <div class="pay-card active">
-                        <div class="pay-title">bKash / Nagad Personal</div>
-                        <p style="font-size: 13px; color: #333; font-weight: bold; margin-top: 4px;">Send Money Number: 01940836975</p>
-                    </div>
-                </div>
-                <input type="text" id="trxId" class="input-control" placeholder="Enter Transaction ID (TrxID)" required style="margin-top: 10px;">
-            </div>
-
-            <!-- Buy Button -->
-            <button type="submit" class="btn-buy">অর্ডার কনফার্ম করুন</button>
-        </form>
-
-    </div>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Add Money</a>
-        <a href="#" class="nav-item"><i class="fas fa-shopping-bag"></i>My Orders</a>
-        <a href="https://wa.me/8801940836975" class="nav-item"><i class="fas fa-headset"></i>Support</a>
-    </div>
-
-    <script>
-        let selectedPackage = '';
-        let selectedPrice = 0;
-
-        function selectOffer(name, price) {
-            selectedPackage = name;
-            selectedPrice = price;
-            document.querySelectorAll('.item-card').forEach(card => card.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
-
-        document.getElementById('topupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if(!selectedPackage) {
-                alert('দয়া করে যেকোনো একটি অফার সিলেক্ট করুন!');
-                return;
-            }
-
-            const uid = document.getElementById('playerUid').value;
-            const trxid = document.getElementById('trxId').value;
-            const whatsappNumber = "8801940836975";
-
-            const text = `*NEW ORDER - TGRYST TOPUP*%0A%0A` +
-                         `*Player UID:* ${uid}%0A` +
-                         `*Package:* ${selectedPackage}%0A` +
-                         `*Price:* ${selectedPrice} Tk%0A` +
-                         `*TrxID:* ${trxid}`;
-
-            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
-        });
-    </script>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="bn">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TGRYST TOP UP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; padding-bottom: 80px; }
-
-        /* Top Navbar */
-        .navbar { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e1e4e8; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .logo { font-size: 20px; font-weight: 800; color: #0088cc; letter-spacing: -0.5px; }
-        .logo span { color: #111; }
-        .user-badge { display: flex; align-items: center; gap: 8px; background: #eef2f5; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 13px; }
-        .user-avatar { width: 26px; height: 26px; background: #0088cc; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
-
-        .container { padding: 15px; max-width: 600px; margin: 0 auto; }
-
-        /* Category Header */
-        .cat-header { font-size: 18px; font-weight: 800; text-align: center; color: #111; margin: 15px 0; text-transform: uppercase; }
-
-        /* Item Grid */
-        .item-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
-        .item-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e1e4e8; text-align: center; cursor: pointer; transition: 0.2s; box-shadow: 0 2px 5px rgba(0,0,0,0.03); }
-        .item-card.active { border-color: #1a73e8; box-shadow: 0 0 0 2px #1a73e8; }
-        .item-img { width: 100%; height: 95px; background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 5px; position: relative; }
-        .item-img i { font-size: 28px; margin-bottom: 4px; color: #ffb703; }
-        .item-img .title-badge { font-size: 11px; font-weight: 700; text-shadow: 0 1px 2px #000; text-transform: uppercase; }
-        .item-name { font-size: 12px; font-weight: 800; color: #2e7d32; padding: 8px 4px; background: #fff; }
-
-        /* Special Banner Mystery Box */
-        .mystery-bg { background: linear-gradient(135deg, #ff9900, #ff5500) !important; }
-        .mystery-bg i { color: #fff !important; }
-
-        /* Section Box */
-        .step-box { background: #fff; border-radius: 12px; padding: 16px; border: 1px solid #e1e4e8; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
-        .step-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-        .step-num { width: 28px; height: 28px; background: #1a73e8; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
-        .step-title { font-size: 16px; font-weight: 700; color: #2c3e50; }
-
-        /* Input Control */
-        .input-control { width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid #dcdfe6; font-size: 14px; outline: none; background: #fdfdfd; }
-        .input-control:focus { border-color: #1a73e8; background: #fff; }
-
-        /* Payment Selection Cards */
-        .pay-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 12px; }
-        .pay-card { border: 1px solid #e1e4e8; border-radius: 10px; padding: 12px; text-align: center; cursor: pointer; background: #fff; }
-        .pay-card.active { border-color: #1a73e8; background: #f4f8ff; box-shadow: 0 0 0 1px #1a73e8; }
-        .pay-title { font-weight: 700; font-size: 14px; color: #1a73e8; margin-bottom: 4px; }
-
-        /* Order Button */
-        .btn-buy { width: 100%; padding: 14px; background: #28a745; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2); }
-
-        /* Bottom Nav */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid #e1e4e8; display: flex; justify-content: space-around; padding: 8px 0; z-index: 100; }
-        .nav-item { color: #6c757d; text-decoration: none; font-size: 10px; font-weight: 600; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-        .nav-item.active { color: #1a73e8; }
-        .nav-item i { font-size: 18px; }
-    </style>
-</head>
-<body>
-
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="logo">TGRYST <span>TOPUP</span></div>
-        <div class="user-badge">
-            <div class="user-avatar">Y</div>
-            <span>৳ 0.00</span>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <!-- Category Title -->
-        <div class="cat-header">FREE FIRE TOPUP ⚡</div>
-
-        <!-- Offer Items (3 Column Grid) -->
-        <div class="item-grid">
-            <div class="item-card" onclick="selectOffer('25 Diamond', 25)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">25 Diamond</div>
-                </div>
-                <div class="item-name">25 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('50 Diamond', 45)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">50 Diamond</div>
-                </div>
-                <div class="item-name">45 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('115 Diamond', 80)">
-                <div class="item-img">
-                    <i class="fas fa-gem"></i>
-                    <div class="title-badge">115 Diamond</div>
-                </div>
-                <div class="item-name">80 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Weekly Lite', 50)">
-                <div class="item-img">
-                    <i class="fas fa-crown"></i>
-                    <div class="title-badge">Weekly Lite</div>
-                </div>
-                <div class="item-name">50 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Mystery Box', 30)">
-                <div class="item-img mystery-bg">
-                    <i class="fas fa-box-open"></i>
-                    <div class="title-badge">Mystery Box</div>
-                </div>
-                <div class="item-name">30 Tk</div>
-            </div>
-
-            <div class="item-card" onclick="selectOffer('Level Up Pass', 190)">
-                <div class="item-img">
-                    <i class="fas fa-layer-group"></i>
-                    <div class="title-badge">Level Up Pass</div>
-                </div>
-                <div class="item-name">190 Tk</div>
-            </div>
-        </div>
-
-        <form id="topupForm">
-            <!-- Step 1: Account Info -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">1</div>
-                    <div class="step-title">Account Info</div>
-                </div>
-                <input type="number" id="playerUid" class="input-control" placeholder="Enter player id (UID)" required>
-            </div>
-
-            <!-- Step 2: Payment Selection -->
-            <div class="step-box">
-                <div class="step-header">
-                    <div class="step-num">2</div>
-                    <div class="step-title">Select Payment</div>
-                </div>
-                <div class="pay-grid">
-                    <div class="pay-card active">
-                        <div class="pay-title">bKash / Nagad Personal</div>
-                        <p style="font-size: 13px; color: #333; font-weight: bold; margin-top: 4px;">Send Money Number: 01940836975</p>
-                    </div>
-                </div>
-                <input type="text" id="trxId" class="input-control" placeholder="Enter Transaction ID (TrxID)" required style="margin-top: 10px;">
-            </div>
-
-            <!-- Buy Button -->
-            <button type="submit" class="btn-buy">অর্ডার কনফার্ম করুন</button>
-        </form>
-
-    </div>
-
-    <!-- Bottom Navigation -->
-    <div class="bottom-nav">
-        <a href="#" class="nav-item active"><i class="fas fa-home"></i>Home</a>
-        <a href="#" class="nav-item"><i class="fas fa-plus-circle"></i>Add Money</a>
-        <a href="#" class="nav-item"><i class="fas fa-shopping-bag"></i>My Orders</a>
-        <a href="https://wa.me/8801940836975" class="nav-item"><i class="fas fa-headset"></i>Support</a>
-    </div>
-
-    <script>
-        let selectedPackage = '';
-        let selectedPrice = 0;
-
-        function selectOffer(name, price) {
-            selectedPackage = name;
-            selectedPrice = price;
-            document.querySelectorAll('.item-card').forEach(card => card.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
-
-        document.getElementById('topupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if(!selectedPackage) {
-                alert('দয়া করে যেকোনো একটি অফার সিলেক্ট করুন!');
-                return;
-            }
-
-            const uid = document.getElementById('playerUid').value;
-            const trxid = document.getElementById('trxId').value;
-            const whatsappNumber = "8801940836975";
-
-            const text = `*NEW ORDER - TGRYST TOPUP*%0A%0A` +
-                         `*Player UID:* ${uid}%0A` +
-                         `*Package:* ${selectedPackage}%0A` +
-                         `*Price:* ${selectedPrice} Tk%0A` +
+                         `*Price:* ${selectedPrice} TK%0A` +
                          `*TrxID:* ${trxid}`;
 
             window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
